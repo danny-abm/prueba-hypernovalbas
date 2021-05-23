@@ -10,7 +10,7 @@ app.use(bodyParser.json());
 
 //RUTAS
 app.get('/api/gastos',(req,res)=>{
-   //res.send('LISTA DE empleados')
+  //res.send('LISTA DE empleados')
 
    const sql = 'SELECT * FROM empleado';
 
