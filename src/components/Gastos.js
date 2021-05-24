@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from './Navbar';
 import{Table, Button, Container, FormGroup} from 'react-bootstrap'
@@ -11,13 +11,18 @@ const data=[
 {fecha: "1-02-2020", cuenta:"25435789", descripcion:"celular", total:"$350.99"}
 ];
 
+//const GastosA=({fgasto})=>{
 class Gastos extends React.Component{
 state={
     data:data
 }
 
+
+
     render(){
+
         return (
+            
             <div>
             <Navbar></Navbar>
             
@@ -37,6 +42,7 @@ state={
             </div>
             </div>
             </div>
+            
                 <p><b>Informacion del empleado:</b></p>
             <div class="row">
             <div class="col-sm-15">
@@ -108,9 +114,11 @@ state={
         
             </div>
             
-            
+           
         );
+        
     }
+
 }
 
 export default Gastos;

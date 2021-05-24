@@ -1,12 +1,14 @@
 const express= require('express');
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 //var config = require('./config');
 const PORT = process.env.PORT || 8080;
 
 const app = express();
 
 app.use(bodyParser.json());
+app.use(cors());
 
 //RUTAS
 app.get('/api/gastos',(req,res)=>{
@@ -23,7 +25,23 @@ app.get('/api/gastos',(req,res)=>{
         res.send('Not result');
     }
    });
-})
+});
+
+app.get('/api/gastos/:id',(req,res)=>{
+    //res.send('LISTA DE empleados')
+     const{id}=req.params
+     const sql = `SELECT * FROM gastos where EmpleadoId = ${id}`;
+  
+     connection.query(sql,(error, results)=>{
+      if (error) throw error;
+      if (results.length > 0){
+          res.json(results);
+      } 
+      else{
+          res.send('Not result');
+      }
+     });
+  });
 
 //CONECTANDO CON MYSQL
 const connection = mysql.createConnection({
