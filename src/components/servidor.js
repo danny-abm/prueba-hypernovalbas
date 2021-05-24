@@ -25,12 +25,16 @@ app.get('/api/gastos',(req,res)=>{
         res.send('Not result');
     }
    });
+
+   
+  
 });
 
-app.get('/api/gastos/:id',(req,res)=>{
+app.get('/api/gastos/:id/:id2',(req,res)=>{
     //res.send('LISTA DE empleados')
      const{id}=req.params
-     const sql = `SELECT * FROM gastos where EmpleadoId = ${id}`;
+     const{id2}=req.params
+     const sql = `SELECT empleado.*, gastos.fecha, gastos.Aprobado,gastos.Cuenta,gastos.Descripcion,gastos.Total, concepto.Concepto FROM empleado INNER JOIN gastos ON empleado.EmpleadoID =gastos.EmpleadoID INNER JOIN concepto ON concepto.ID = gastos.IdConcep WHERE empleado.EmpleadoID = ${id} AND concepto.ID=${id2}`;
   
      connection.query(sql,(error, results)=>{
       if (error) throw error;
